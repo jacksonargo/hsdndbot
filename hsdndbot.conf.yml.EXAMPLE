@@ -1,0 +1,28 @@
+# Example config for hsdndbot
+# Update and rename this file as hsdndbot.conf.yml
+---
+
+## Bot settings
+:bot:
+  :nick: mynick
+  :server: irc.myserver.com
+  :channel:
+    - "#mychannel"
+
+## Database settings
+:db:
+  :hosts:
+    - myhost:27017
+  :options:
+    :database: mydb
+    :user:     myuser
+    :password: mypass
+
+## Names of the collections
+:co:
+  :players: :players
+  :races:   :races
+  :skills:  :skills
+  :attrs:   :attributes
+  :classes: :classes
+
