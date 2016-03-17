@@ -9,39 +9,62 @@ class Skill
   def physattr
     Physattr.where(name: @related_pattr).first
   end
-  def self.get_plyrattr(player, skill_name)
-    # Get the skill's related pattr
-    pattr_name = self.where(name: skill_name).first.related_pattr
-    # Get the players plyrattr object
-    player.plyrattrs.where(name: pattr_name).first
+
+  def to_s
+    "#{self.name} (#{self.related_pattr[0..2]}): #{self.summary}"
   end
 end
 
 class Plyrskill < Skill
   field :base_value, type: Integer
   embedded_in :player
+
   def self.clone (skill)
     s = Plyrskill.new
     s.name = skill.name
-    s.base_value = 1
+    s.base_value = 0
     return s
   end
 
-  # Get the total value of the skill
-  def self.total(player, skill_name)
-    # Get the current skill level
-    x = self.has?(player, skill_name)
-    if x
-      base_value = x.base_value
-    else
-      base_value = 0
-    end
-    # Get the attr skillbuff
-    plyrattr = Skill.get_plyrattr(player, skill_name)
-    base_value + plyrattr.skillBuff(player)
+  def belongs_to_player
+    key = self.reflect_on_association(:player).inverse
+    Player.where({ key => self.attributes }).first
   end
 
-  def self.has?(player, skill_name)
-    return player.plyrskills.where(name: skill_name).first
+  # Increment the skill value
+  def up(x=1)
+    self.base_value += x
+    self.save
+    self.base_value
+  end
+
+  def plyrattr(player=nil)
+    player ||= belongs_to_player
+    # Get the skill's related pattr
+    # We have to look up the original skill definition
+    pattr_name = Skill.where(name: self.name).first.related_pattr
+    # Get the players plyrattr object
+    player.plyrattrs.where(name: pattr_name).first
+  end
+
+  # Get the total value of the skill
+  # Sum of the base value and the modifier from the skills related physattr
+  def total
+    player = belongs_to_player
+    base_value + plyrattr.skill_mod(player)
+  end
+
+  # Roll 20 for this skill
+  def roll(n=20)
+    total + rand(n)
+  end
+
+  # Create a new list of all plyrskills
+  def self.new_list
+    list = []
+    Skill.where({}).each do |a|
+      list << self.clone(a)
+    end
+    list
   end
 end

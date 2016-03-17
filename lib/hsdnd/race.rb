@@ -21,8 +21,6 @@ class Race
     self.raceattrs.each do |a|
       string += sprintf " %s %+i,", a.short, a.value
     end
-    # Remove the last comma
-    string[-1] = "\0"
-    return string
+    return string.chomp(",")
   end
 end

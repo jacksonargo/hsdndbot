@@ -27,15 +27,11 @@ class Player
     p.skillPoints = 4
     p.hp = 1
     p.sp = 1
-    p.plyrattrs = Plyrattr.new_list
+    p.plyrattrs = Plyrattr.new_list   # New list of attrs
+    p.plyrskills = Plyrskill.new_list # New list of skills
     p.level_log = []
     p.level_log << "Created a character!"
     return p
-  end
-
-  # Returns the player's nick
-  def saynick
-    puts self.nick
   end
 
   # Returns the player's level
@@ -60,20 +56,20 @@ class Player
   # Returns true if successful
   def setBase(base_name)
     base_name.capitalize!
-    Basetype.where(name: base_name).each do
+    if Basetype.where(name: base_name).exists?
       self.baseType = base_name
       return true
     end
     return nil
   end
 
-  ## Set player race
+  # Set player race
   # Returns nil if the race does not exist
   # Returns true if successful
   def setRace(race_name)
     race_name.capitalize!
     # Check that the race exists
-    Race.where(name: race_name).each do
+    if Race.where(name: race_name).exists?
       self.race = race_name
       return true
     end
@@ -81,24 +77,13 @@ class Player
     return nil
   end
 
-  ## Add/increment a player skill
+  # Increment a player skill
   # Returns nil if the skill does not exist
   # Returns the current value of the skill on success
-  def addSkill(skill_name)
+  def skillup(skill_name, x=1)
     skill_name.capitalize!
-    # Check if the player already has the skill
-    self.plyrskills.where(name: skill_name).each do |s|
-      s.base_value += 1
-      self.save
-      return s.base_value
-    end
-    # Check if the skill exists at all
-    Skill.where(name: skill_name).each do |skill|
-      self.plyrskills << Plyrskill.clone(skill)
-      self.save
-      return 1
-    end
-    # Skills doesn't exist, so we return nil
-    return nil
+    s = self.plyrskills.where(name: skill_name).first
+    return nil unless s
+    s.up x
   end
 end
