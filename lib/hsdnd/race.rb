@@ -4,8 +4,10 @@ class Race
   field :name, type: String
   embeds_many :raceattrs
 
+  # Return the modifier for a particular attr
   def attrBuff(attrname)
-    self.raceattrs.where(name: attrname).first.value
+    a = self.raceattrs.where(name: attrname).first
+    a ? a.value : 0
   end
 
   def self.attrBuff(typename, attrname)

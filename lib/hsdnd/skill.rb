@@ -13,6 +13,10 @@ class Skill
   def to_s
     "#{self.name} (#{self.related_pattr[0..2]}): #{self.summary}"
   end
+
+  def self.name_exists?(name)
+    Skill.where(name: name).first
+  end
 end
 
 class Plyrskill < Skill

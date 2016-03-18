@@ -77,6 +77,30 @@ class Player
     return nil
   end
 
+  # Check for a valid skill name
+  # This will also automatically add the skill to the player
+  # if the skill exists, but the player does not have it.
+  # Returns the skill object if it exists, else returns nil.
+  def skill_exists?(skill_name)
+    skill_name.capitalize!
+
+    # Check if the player has that skill
+    ps = self.plyrskills.where(name: skill_name).first
+    # We are done if the the player has that skill
+    return ps if ps != nil
+
+    # Now we need to check if that skill actually exists.
+    skill = Skill.name_exists? skill_name
+    # If the skill does not exist at all, we're done.
+    return nil unless skill != nil
+
+    # Since the skill exists, we need to add it to the player.
+    new = Plyrskill.clone skill
+    self.plyrskills << new
+    self.save
+    return new
+  end
+
   # Increment a player skill
   # Returns nil if the skill does not exist
   # Returns the current value of the skill on success
