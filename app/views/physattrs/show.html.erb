@@ -1,0 +1,13 @@
+<h1><%= @physattr.name %></h1>
+<p>
+  <strong>Hidden:</strong>
+  <%- if @physattr.hidden -%> True
+  <%- else -%> False
+  <%- end -%>
+</p>
+<blockquote>
+  <%= @physattr.summary %>
+</blockquote>
+
+<%= link_to 'Edit', edit_physattr_path(@physattr) %> |
+<%= link_to 'Back', physattrs_path %>

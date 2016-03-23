@@ -1,0 +1,6 @@
+A server is already running. Check /home/jackson/hsdnd/tmp/pids/server.pid.
+=> Booting WEBrick
+=> Rails 4.2.5.2 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+Exiting

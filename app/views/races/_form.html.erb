@@ -1,0 +1,42 @@
+<%= form_for @race do |f| %>
+ 
+  <% if @race.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@race.errors.count, "error") %> prohibited
+        this race from being saved:
+      </h2>
+      <ul>
+        <% @race.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <br>
+  <h3>Attributes</h3>
+  <table class="table table-hover table-bordered">
+  <% Physattr.each do |pattr| %>
+    <%# Get the corresponding raceattr or create it if it doesn't exist %>
+    <% rattr = @race.raceattr_exists? pattr.name %>
+    <%= f.fields_for :raceattrs, rattr do |fields| %>
+      <tr>
+        <td><strong><%= pattr.name %></strong></td>
+        <td><%= fields.text_field :value %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>

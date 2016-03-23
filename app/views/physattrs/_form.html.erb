@@ -1,0 +1,36 @@
+<%= form_for @physattr do |f| %>
+ 
+  <% if @physattr.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@physattr.errors.count, "error") %> prohibited
+        this physattr from being saved:
+      </h2>
+      <ul>
+        <% @physattr.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.label :summary %><br>
+    <%= f.text_area :summary %>
+  </p>
+ 
+  <p>
+    <%= f.label :hidden %><br>
+    <%= f.check_box :hidden %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
