@@ -1,14 +1,2 @@
-<h1>Races</h1>
-
-<table class="table table-hover">
-<% @races.each do |race| %>
-  <tr>
-    <td><%= link_to race.name, race_path(race) %></td>
-    <td><%= link_to 'Edit', edit_race_path(race) %></td>
-    <td><%= link_to 'Destroy', race_path(race),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-<%= link_to 'New Race', new_race_path %>
+<%= index_title "Races" %>
+<%= index_table @races %>

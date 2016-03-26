@@ -1,14 +1,2 @@
-<h1>Physical Attributes</h1>
-<% @physattrs.each do |physattr| %>
-  <div class="row">
-    <div class="col-md-2"><%= link_to physattr.name, physattr_path(physattr) %></div>
-    <div class="col-md-2">
-        (<%= link_to 'Edit', edit_physattr_path(physattr) %>)
-        (<%= link_to 'Destroy', physattr_path(physattr),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>)
-    </div>
-  </div>
-<% end %>
-<br>
-<%= link_to 'Create New Physical Attribute', new_physattr_path %>
+<%= index_title "Physical Attributes" %>
+<%= index_table @physattrs %>

@@ -1,0 +1,12 @@
+<div class="container">
+  <form class="form-signin">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <%= f.label :email, class: "sr-only" %>
+      <%= f.text_field :username, autofocus: true, class: "form-control", placeholder: "Username" %>
+      <%= f.label :password, class: "sr-only" %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+      <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+    <% end %>
+  </form>
+</div>

@@ -1,4 +1,5 @@
 class RacesController < ApplicationController
+
   def index
     @races = Race.all
   end
@@ -9,6 +10,9 @@ class RacesController < ApplicationController
 
   def new
     @race = Race.new
+    @race.name = "New Race"
+    @race.save
+    render 'edit'
   end
 
   def edit

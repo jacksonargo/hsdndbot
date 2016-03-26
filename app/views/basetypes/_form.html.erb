@@ -1,0 +1,9 @@
+<%= form_for @basetype do |f| %>
+
+  <%= show_edit_errors @basetype %>
+  <%= edit_name f %>
+  <%= edit_summary f %>
+  <%= edit_physattrs f, @basetype, :typeattrs %>
+  <%= f.submit %>
+ 
+<% end %>

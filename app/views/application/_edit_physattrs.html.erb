@@ -1,0 +1,13 @@
+<h3>Attributes</h3>
+<table class="table table-hover table-bordered">
+  <% Physattr.each do |pattr| %>
+    <%# Get the corresponding basetypeattr or create it if it doesn't exist %>
+    <% mattr = @model.physattr_exists? pattr.name %>
+    <%= @f.fields_for @physattr_method, mattr do |fields| %>
+      <tr>
+        <td><strong><%= fields.label pattr.name %></strong></td>
+        <td><%= fields.text_field :value %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

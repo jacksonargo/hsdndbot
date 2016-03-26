@@ -46,3 +46,5 @@ end
 # Use mongoid for db backend
 gem 'mongoid', '~> 5.1.0'
 
+# Use devise for login
+gem 'devise'

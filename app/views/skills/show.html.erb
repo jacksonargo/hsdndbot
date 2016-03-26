@@ -1,16 +1,4 @@
-<h1><%= @skill.name %></h1>
-<p>
-  <strong>Attribute:</strong> <%= @skill.related_pattr %>
-</p>
-<blockquote>
-  <%= @skill.summary %>
-</blockquote>
-<h4>Examples</h4>
-<ul>
-<% @skill.examples.each do |e| %>
-  <li><%= e %></li>
-<% end %>
-</ul>
-
-<%= link_to 'Edit', edit_skill_path(@skill) %> |
-<%= link_to 'Back', skills_path %>
+<%= show_title @skill %>
+<%= show_summary @skill %>
+<strong>Attribute:</strong> <%= @skill.related_pattr %><br>
+<strong>Examples:</strong> <%= @skill.examples.join(', ') %>.

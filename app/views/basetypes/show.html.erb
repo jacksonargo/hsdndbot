@@ -1,0 +1,12 @@
+<%= show_title @basetype %>
+<%= show_summary @basetype %>
+
+<% if @basetype.usualRoles %>
+  <strong>Usual roles:</strong> <%= @basetype.usualRoles.join(', ') %>.
+<% end %>
+
+<%= show_physattr_list @basetype, :typeattrs %>
+
+<div class="listing">
+  <h3>Feats</h3>
+</div>

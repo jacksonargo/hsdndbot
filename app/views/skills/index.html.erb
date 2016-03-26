@@ -1,14 +1,2 @@
-<h1>Skills</h1>
-<% @skills.each do |skill| %>
-  <div class="row">
-    <div class="col-md-2"><%= link_to skill.name, skill_path(skill) %></div>
-    <div class="col-md-2">
-        (<%= link_to 'Edit', edit_skill_path(skill) %>)
-        (<%= link_to 'Destroy', skill_path(skill),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>)
-    </div>
-  </div>
-<% end %>
-<br>
-<%= link_to 'Create New Skill', new_skill_path %>
+<%= index_title "Skills" %>
+<%= index_table @skills %>

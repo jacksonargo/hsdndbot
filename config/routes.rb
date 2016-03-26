@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+#  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,18 +8,15 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :articles do
-    resources :comments
-  end
+#  resources :articles do
+#    resources :comments
+#  end
 
   resources :physattrs
 
-  resources :races do
-    resources :raceattrs
-  end
-
+  resources :races
   resources :skills
-  resources :personalities
+  resources :basetypes
   resources :feats
 
 

@@ -3,6 +3,8 @@ class Race
   include Mongoid::Timestamps
 
   field :name, type: String
+  validates :name, presence: true
+
   embeds_many :raceattrs
   accepts_nested_attributes_for :raceattrs
 
@@ -51,5 +53,16 @@ class Race
     self.raceattrs << new
     self.save
     return new
+  end
+
+  ## In order to make things a little more general,
+  ## we can refer to the raceattr as physattr
+
+  def physattr_exists?(rattr_name)
+    raceattr_exists?(rattr_name)
+  end
+
+  def physattr
+    self.raceattr
   end
 end

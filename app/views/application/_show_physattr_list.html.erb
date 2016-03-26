@@ -1,0 +1,13 @@
+<div class="listing">
+  <h3>Attributes</h3>
+  <table class="table table-hover">
+  <% @model.send(@physattrs_method).each do |a| %>
+    <% if a.value != nil and a.value != 0 %>
+      <tr>
+        <td><strong><%= a.name %></strong></td>
+        <td><%= sprintf "%+i", a.value %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+</div>

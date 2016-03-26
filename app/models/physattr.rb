@@ -36,10 +36,6 @@ class Modattr < Physattr
   field :value, type: Integer
 end
 
-class Typeattr < Modattr
-  embedded_in :basetype
-end
-
 class Plyrattr < Physattr
   embedded_in :player
   field :base_value, type: Integer
