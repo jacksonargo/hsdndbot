@@ -2,10 +2,9 @@ class Feat
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name, type: String
-  field :perk, type: String
-  field :type, type: String
-  field :uses, type: String
+  field :name,        type: String
+  field :personality, type: String
+  field :method,      type: Symbol
 
   embeds_many :featattrs
   accepts_nested_attributes_for :featattrs
@@ -19,6 +18,9 @@ class Feat
       "Once a Month",
     ]
   end
+
+
+  ##
 
   # Check for a valid physattr name
   # Automatically add the raceattr if it does not exists
@@ -49,4 +51,5 @@ class Feat
     featattr_exists?(rattr_name)
   end
 
+  
 end

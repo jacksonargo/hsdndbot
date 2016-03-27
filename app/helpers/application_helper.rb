@@ -93,6 +93,20 @@ module ApplicationHelper
     render 'show_collection_list'
   end
 
+  def show_collection_table(model, collection, data, opts={})
+    opts[:value]       ||= :value
+    opts[:show_zero]   ||= false 
+    opts[:title]       ||= collection.to_s.capitalize
+    opts[:show_hidden] = true if opts[:show_hidden] == nil
+
+    @model = model
+    @method = collection
+    @data = data
+    @opts = opts
+
+    render 'show_collection_table'
+  end
+
   def show_edit_errors(model)
     @model = model
     render 'show_errors'

@@ -9,6 +9,14 @@ class Plyrskill < Skill
     return s
   end
 
+  def to_s
+    "#{name}: #{base_value} (#{total})"
+  end
+
+  def lookup
+    Skill.name_exists? self.name
+  end
+
   def belongs_to_player
     key = self.reflect_on_association(:player).inverse
     Player.where({ key => self.attributes }).first

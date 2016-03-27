@@ -6,24 +6,22 @@ class Player
   field :nick,        type: String
   field :backstory,   type: String
   field :note,        type: String
-  field :skillPoints, type: Integer
-  field :classPoints, type: Integer
-  field :attrPoints,  type: Integer
-  field :featPoints,  type: Integer
-  field :coin,        type: Float
-  field :hp,          type: Float
-  field :sp,          type: Float
-  field :level_log,   type: Array
   field :race,        type: String
   field :baseType,    type: String
+  field :level_log,   type: Array,   default: []
+  field :skillPoints, type: Integer, default: 0
+  field :classPoints, type: Integer, default: 0
+  field :attrPoints,  type: Integer, default: 0
+  field :featPoints,  type: Integer, default: 0
+  field :coin,        type: Float,   default: 0
+  field :hp,          type: Float,   default: 0
+  field :sp,          type: Float,   default: 0
 
   embeds_many :plyrskills
   embeds_many :plyrattrs
 
-  validates :name, presence: true
-  validates :backstory, presence: true
-  validates :race, presence: true
-  validates :baseType, presence: true
+  accepts_nested_attributes_for :plyrskills
+  accepts_nested_attributes_for :plyrattrs
 
   def self.new_player(nick)
     p = self.new
@@ -33,16 +31,41 @@ class Player
     p.hp = 1
     p.sp = 1
     p.plyrattrs = Plyrattr.new_list   # New list of attrs
-    p.plyrattr_exists?("Any").value = 0
+    p.plyrattr_exists?("Any").base_value = 0
     p.plyrskills = Plyrskill.new_list # New list of skills
     p.level_log = []
     p.level_log << "Created a character!"
     return p
   end
 
+  # Guesses what the name belongs to, and tries to get the
+  # base value
+  def base_value(name, collection)
+    name = Physattr.long_name name if collection == :plyrattrs
+    send(collection).where(name: name).first.base_value
+  end
+
   # Returns the player's level
   def level
     self.level_log.length
+  end
+
+  # Returns the players max hp
+  def max_hp
+    level + base_value(:str, :plyrattrs) + 2 * base_value(:con, :plyrattrs)
+  end
+
+  # Returns the players max sp
+  def max_sp
+    level + base_value(:wis, :plyrattrs) + base_value(:con, :plyrattrs) + 5
+  end
+
+  def percent_sp
+    sp / max_sp * 100
+  end
+
+  def percent_hp
+    hp / max_hp * 100
   end
 
   # Returns true if the player has any hp
@@ -88,8 +111,6 @@ class Player
   # if the skill exists, but the player does not have it.
   # Returns the skill object if it exists, else returns nil.
   def skill_exists?(skill_name)
-    skill_name.capitalize!
-
     # Check if the player has that skill
     ps = self.plyrskills.where(name: skill_name).first
     # We are done if the the player has that skill
@@ -102,8 +123,8 @@ class Player
 
     # Since the skill exists, we need to add it to the player.
     new = Plyrskill.clone skill
+    new.base_value = 0
     self.plyrskills << new
-    self.save
     return new
   end
 
@@ -111,7 +132,6 @@ class Player
   # Returns nil if the skill does not exist
   # Returns the current value of the skill on success
   def skillup(skill_name, x=1)
-    skill_name.capitalize!
     s = self.plyrskills.where(name: skill_name).first
     return nil unless s
     s.up x
@@ -121,8 +141,6 @@ class Player
   # Automatically add the plyrattr if it does not exists
   # Returns the plyrattr object if it exists
   def plyrattr_exists?(rattr_name)
-    rattr_name.capitalize!
-
     rattr = self.plyrattrs.where(name: rattr_name).first
 
     # We are done if the rattr exists
@@ -136,7 +154,7 @@ class Player
     # Since it does exist, we add it to the list
     new = Plyrattr.new
     new.name = pattr.name
-    new.value = 0
+    new.base_value = 0
     self.plyrattrs << new
     return new
   end

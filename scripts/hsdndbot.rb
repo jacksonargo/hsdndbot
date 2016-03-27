@@ -34,6 +34,8 @@ class Cinch::HSDnD
   match /race (\w*)$/,              method: :set_player_race
   match /class$/,                   method: :set_player_base_class
   match /class (\w*)$/,             method: :set_player_base_class
+  match /addlevel (.*)$/,           method: :addlevel
+  match /level/,                    method: :get_level
 
   ##
   ## Methods
@@ -75,7 +77,7 @@ class Cinch::HSDnD
   # Print all available attributes
   def printallattrs(msg)
     msg.reply "Listing available attributes:"
-    Physattr.each { |p| msg.reply p }
+    Physattr.each { |p| msg.reply p unless p.is_hidden? }
     msg.reply "Done!"
   end
 
@@ -175,6 +177,22 @@ class Cinch::HSDnD
       else
         msg.reply "Sorry, that action is not avaliable. :("
     end
+  end
+
+  # Add a level for a player
+  def addlevel(msg, log_entry)
+    player = verify_player msg
+    return unless player
+    player.level_log << log_entry
+    msg.reply "Congratulations! #{player.name} has ascended to level #{player.level}."
+    player.save
+  end
+
+  # Get the player's level
+  def get_level(msg)
+    player = verify_player msg
+    return unless player
+    msg.reply "#{player.name} is level #{player.level}."
   end
 
   # Set a player name

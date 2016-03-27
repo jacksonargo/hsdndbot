@@ -6,12 +6,12 @@
     
   <p>
     <%= f.label "Base class" %><br>
-    <%= f.collection_select :baseType, Basetype.all, :name, :name, prompt: true %>
+    <%= f.select :baseType, Basetype.pluck(:name), prompt: true %>
   </p>
 
   <p>
     <%= f.label "Race" %><br>
-    <%= f.collection_select :race, Race.all, :name, :name, prompt: true %>
+    <%= f.select :race, Race.pluck(:name), prompt: true %>
   </p>
 
   <%= edit_summary f, :backstory %>

@@ -1,24 +1,148 @@
 <%= show_title @player %>
 
+  <p>
+    <h3>Level <%= @player.level %></h3>
+  </p>
+
 <%= show_summary @player, :backstory %>
 
-<%= show_strong_list @player, [ 
-    :level,
-    :nick, 
-    :race,
-    { method: :baseType, name: "Base class" },
-    :coin,
-    { method: :hp, name: "HP" },
-    { method: :sp, name: "SP" },
-    :skillPoints,
-    :classPoints,
-    :attrPoints,
-    :featPoints,
-  ]
-%><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-hover table-borderless">
+        <tr>
+          <td><h4>Nick:</h4></td>
+          <td><h4><%= @player.nick %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>Race:</h4></td>
+          <td><h4><%= @player.race %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>Base Class:</h4></td>
+          <td><h4><%= @player.baseType %></h4></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <table class="table table-hover table-borderless">
+        <tr>
+          <td><h4>Money:</h4></td>
+          <td><h4><%= sprintf "$%.2f", @player.coin %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>HP:</h4></td>
+          <td><h4><%= sprintf "%.2f%%", @player.percent_hp %> 
+                    (<%= @player.hp.to_i %>/<%= @player.max_hp.to_i %>)</h4></td>
+        </tr>
+        <tr>
+          <td><h4>SP:</h4></td>
+          <td><h4><%= sprintf "%.2f%%", @player.percent_sp %> 
+                    (<%= @player.sp.to_i %>/<%= @player.max_sp.to_i %>)</h4></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <table class="table table-hover table-borderless">
+        <tr>
+          <td><h4>Attribute Points:</h4></td>
+          <td><h4><%= @player.attrPoints %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>Skill Points:</h4></td>
+          <td><h4><%= @player.skillPoints %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>Class Points:</h4></td>
+          <td><h4><%= @player.classPoints %></h4></td>
+        </tr>
+        <tr>
+          <td><h4>Feat Points:</h4></td>
+          <td><h4><%= @player.featPoints %></h4></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
-<%= show_collection_list @player, :plyrattrs, title: "Attributes", value: :base_value %>
-<%= show_collection_list @player, :plyrskills, title: "Skills", value: :base_value %>
+<div class="container" style="text-align: center;">
+  <table class="table table-hover table-borderless">
+    <thead>
+      <th style="text-align: center;"><h3>Level Log</h3></th>
+    </thead>
+    <% @player.level_log.each do |log| %>
+      <tr>
+        <td><h4><%= log %></h4></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <th><h3>Attributes</h3></th>
+      <th style="text-align: center;">Base</th>
+      <th style="text-align: center;">Total</th>
+      <th style="text-align: center;">Modifier</th>
+    </thead>
+    <tbody>
+      <%
+        sorted = @player.plyrattrs.sort do |a,b|
+          if b.base_value != a.base_value
+            b.base_value <=> a.base_value
+          else
+            b.total <=> a.total
+          end
+        end
+      %>
+      <% sorted.each do |a| %>
+        <%# Always skip nils %>
+        <% next unless a.base_value %>
+        <%# Never show hidden %>
+        <% next if a.is_hidden? %>
+        <tr>
+            <td><strong><%= a.name %></strong></td>
+            <td style="text-align: center;"><%= a.base_value %></td>
+            <td style="text-align: center;"><%= a.total %></td>
+            <td style="text-align: center;"><%= sprintf "%+i", a.skill_mod %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <th><h3>Skills</h3></th>
+      <th style="text-align: center;">Base</th>
+      <th style="text-align: center;">Total</th>
+    </thead>
+    <tbody>
+      <%
+        sorted = @player.plyrskills.sort do |a,b|
+          if b.base_value != a.base_value
+            b.base_value <=> a.base_value
+          else
+            b.total <=> a.total
+          end
+        end
+      %>
+      <% sorted.each do |a| %>
+        <%# Always skip nils %>
+        <% next unless a.base_value %>
+        <%# Never show hidden %>
+        <% next if a.is_hidden? %>
+        <tr>
+            <td><strong><%= a.name %></strong></td>
+            <td style="text-align: center;"><%= a.base_value %></td>
+            <td style="text-align: center;"><%= a.total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <div class="listing">
   <h3>Feats</h3>

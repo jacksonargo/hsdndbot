@@ -2,6 +2,10 @@ class Plyrattr < Physattr
   embedded_in :player
   field :base_value, type: Integer
 
+  def to_s
+    "#{name}: #{base_value} (#{total})"
+  end
+
   # Clone from a physattr
   def self.clone (a)
     n = self.new

@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
   end
 
   def new
-    @player = Player.new
+    @player = Player.new_player "nonick"
     @player.name = "New Player"
     @player.save
     render 'edit'
@@ -42,8 +42,13 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
+  def add_level
+    @player = Player.find(params[:id])
+    render 'add_level'
+  end
+
   private
     def player_params
-      params.require(:player).permit(:name, :nick, :coin, :hp, :sp, :skillPoints, :classPoints, :attrPoints, :featPoints, plyrattrs_attributes: [:name, :value, :id], plyrskills_attributes: [:name, :value, :id])
+      params.require(:player).permit(:name, :nick, :race, :baseType, :backstory, :coin, :hp, :sp, :skillPoints, :classPoints, :attrPoints, :featPoints, plyrattrs_attributes: [:name, :base_value, :id], plyrskills_attributes: [:name, :base_value, :id])
     end
 end

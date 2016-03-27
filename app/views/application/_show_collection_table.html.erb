@@ -1,0 +1,23 @@
+<div class="listing">
+  <h3><%= @opts[:title] %></h3>
+  <table class="table table-hover">
+    <thead>
+
+    </thead>
+    <tbody>
+      <% @model.send(@method).each do |a| %>
+        <%# Always skip nils %>
+        <% next unless a.send(@opts[:value]) %>
+        <%# Only show zero when asked %>
+        <% next if a.send(@opts[:value]) == 0 and not @opts[:show_zero] %>
+        <%# Only show hidden when asked %>
+        <% next if a.is_hidden? and not @opts[:show_hidden] %>
+        <tr>
+          <% @data.each do |d| %>
+            <td><%= a.send(d) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
