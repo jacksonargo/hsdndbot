@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :skills
   resources :basetypes
   resources :feats
+  resources :players
 
 
   # Example of regular route:

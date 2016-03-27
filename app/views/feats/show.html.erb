@@ -1,0 +1,8 @@
+<%= show_title @feat %>
+<%= show_perk @feat %>
+
+<strong>Class:</strong> <%= @feat.type %><br>
+<strong>Activation:</strong> <%= @feat.uses %>
+
+
+<%= show_physattr_list @feat, :featattrs %>

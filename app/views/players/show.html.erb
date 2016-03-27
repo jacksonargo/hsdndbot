@@ -1,0 +1,26 @@
+<%= show_title @player %>
+
+<%= show_summary @player, :backstory %>
+
+<%= show_strong_list @player, [ 
+    :level,
+    :nick, 
+    :race,
+    { method: :baseType, name: "Base class" },
+    :coin,
+    { method: :hp, name: "HP" },
+    { method: :sp, name: "SP" },
+    :skillPoints,
+    :classPoints,
+    :attrPoints,
+    :featPoints,
+  ]
+%><br>
+
+<%= show_collection_list @player, :plyrattrs, title: "Attributes", value: :base_value %>
+<%= show_collection_list @player, :plyrskills, title: "Skills", value: :base_value %>
+
+<div class="listing">
+  <h3>Feats</h3>
+</div>
+

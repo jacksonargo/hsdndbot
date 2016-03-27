@@ -33,6 +33,7 @@ class Player
     p.hp = 1
     p.sp = 1
     p.plyrattrs = Plyrattr.new_list   # New list of attrs
+    p.plyrattr_exists?("Any").value = 0
     p.plyrskills = Plyrskill.new_list # New list of skills
     p.level_log = []
     p.level_log << "Created a character!"
@@ -115,4 +116,41 @@ class Player
     return nil unless s
     s.up x
   end
+
+  # Check for a valid physattr name
+  # Automatically add the plyrattr if it does not exists
+  # Returns the plyrattr object if it exists
+  def plyrattr_exists?(rattr_name)
+    rattr_name.capitalize!
+
+    rattr = self.plyrattrs.where(name: rattr_name).first
+
+    # We are done if the rattr exists
+    return rattr if rattr != nil
+
+    # Now check if the name actually exists
+    pattr = Physattr.name_exists? rattr_name
+    # If the pattr doesn't exist, we are done
+    return nil unless pattr != nil
+
+    # Since it does exist, we add it to the list
+    new = Plyrattr.new
+    new.name = pattr.name
+    new.value = 0
+    self.plyrattrs << new
+    return new
+  end
+
+  ## In order to make things a little more general,
+  ## we can refer to the plyrattr as physattr
+
+  def physattr_exists?(rattr_name)
+    plyrattr_exists?(rattr_name)
+  end
+
+  def physattr
+    self.plyrattr
+  end
+
+
 end

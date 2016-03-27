@@ -10,6 +10,7 @@ class BasetypesController < ApplicationController
   def new
     @basetype = Basetype.new
     @basetype.name = "New Base Class"
+    @basetype.save
     render 'edit'
   end
 
@@ -44,6 +45,6 @@ class BasetypesController < ApplicationController
 
   private
     def basetype_params
-      params.require(:basetype).permit(:name, typeattrs_attributes: [:name, :value, :id])
+      params.require(:basetype).permit(:name, :summary, :usualRoles, typeattrs_attributes: [:name, :value, :id])
     end
 end

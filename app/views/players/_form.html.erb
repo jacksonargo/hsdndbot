@@ -1,0 +1,36 @@
+<%= form_for @player do |f| %>
+
+  <%= show_edit_errors @player %>
+  <%= edit_name f %>
+  <%= edit_string f, :nick %>
+    
+  <p>
+    <%= f.label "Base class" %><br>
+    <%= f.collection_select :baseType, Basetype.all, :name, :name, prompt: true %>
+  </p>
+
+  <p>
+    <%= f.label "Race" %><br>
+    <%= f.collection_select :race, Race.all, :name, :name, prompt: true %>
+  </p>
+
+  <%= edit_summary f, :backstory %>
+
+  <%= edit_string_list f, [
+      :coin,
+      { method: :hp, name: "HP" },
+      { method: :sp, name: "SP" },
+      :skillPoints,
+      :classPoints,
+      :attrPoints,
+      :featPoints,
+    ]
+  %>
+
+  <%= edit_collection f, @player, :plyrattrs, Physattr.all, :physattr_exists?,
+    title: "Attributes", value: :base_value %>
+  <%= edit_collection f, @player, :plyrskills, Skill.all, :skill_exists?, 
+    title: "Skills", value: :base_value %>
+  <%= f.submit %>
+ 
+<% end %>

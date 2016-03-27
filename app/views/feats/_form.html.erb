@@ -1,0 +1,22 @@
+<%= form_for @feat do |f| %>
+
+  <%= show_edit_errors @feat %>
+  <%= edit_name f %>
+
+  <p>
+    <%= f.label :class %><br>
+    <%= f.collection_select :type, Basetype.all, :name, :name, prompt: true %>
+  </p>
+
+  <p>
+    <%= f.label :activation %><br>
+    <%= f.select :uses, Feat.valid_activations %>
+  </p>
+
+  <%= edit_perk f %>
+
+  <%= edit_physattrs f, @feat, :featattrs, "Required Attributes" %>
+
+  <%= f.submit %>
+ 
+<% end %>

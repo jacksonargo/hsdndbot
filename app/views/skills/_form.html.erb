@@ -1,13 +1,13 @@
 <%= form_for @skill do |f| %>
  
   <%= edit_name f %>
-  <%= edit_summary f %>
 
   <p>
     <%= f.label :attribute %><br>
-    <%= f.text_field :related_pattr %>
+    <%= f.collection_select :related_pattr, Physattr.all, :name, :name, prompt: true %>
   </p>
 
+  <%= edit_summary f %>
   <%= f.submit %>
  
 <% end %>

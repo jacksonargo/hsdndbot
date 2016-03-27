@@ -51,7 +51,6 @@ class Race
     new.name = pattr.name
     new.value = 0
     self.raceattrs << new
-    self.save
     return new
   end
 

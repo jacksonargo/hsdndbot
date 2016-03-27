@@ -1,11 +1,11 @@
 <h3><%= @opts[:title] %></h3>
 <table class="table table-hover table-bordered">
-  <% Physattr.each do |pattr| %>
+  <% @collection.each do |c| %>
     <%# Get the corresponding basetypeattr or create it if it doesn't exist %>
-    <% mattr = @model.physattr_exists? pattr.name %>
-    <%= @f.fields_for @physattr_method, mattr do |fields| %>
+    <% m = @model.send(@get_instance, c.name) %>
+    <%= @f.fields_for @method, m do |fields| %>
       <tr>
-        <td><strong><%= fields.label pattr.name %></strong></td>
+        <td><strong><%= fields.label c.name %></strong></td>
         <td><%= fields.text_field @opts[:value] %></td>
       </tr>
     <% end %>
