@@ -8,6 +8,7 @@ class Player
   field :note,        type: String
   field :race,        type: String
   field :baseType,    type: String
+  field :campaign,    type: String,  default: "High School DnD"
   field :level_log,   type: Array,   default: []
   field :skillPoints, type: Integer, default: 0
   field :classPoints, type: Integer, default: 0
