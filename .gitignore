@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 nohup.out
+data/*.yml
+data
+*.swp
