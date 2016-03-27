@@ -1,0 +1,23 @@
+# Config for hsdndbot
+---
+:bot:
+  :nick: hsdndbot
+  :server: irc.freenode.org
+  :channel:
+    - "#hsdnd"
+
+:db:
+  :hosts:
+    - 127.0.0.1:27017
+  :options:
+    :database: hsdnd
+    :user:     hsdndbot
+    :password: "xmkzH%Na%fobK$WK6gtT"
+
+:co:
+  :players: :players
+  :races:   :races
+  :skills:  :skills
+  :attrs:   :attributes
+  :classes: :classes
+

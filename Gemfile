@@ -48,3 +48,6 @@ gem 'mongoid', '~> 5.1.0'
 
 # Use devise for login
 gem 'devise'
+
+# We use cinch for our irc bot
+gem 'cinch'

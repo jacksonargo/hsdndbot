@@ -43,6 +43,7 @@ GEM
     bson (4.0.2)
     builder (3.2.2)
     byebug (8.2.2)
+    cinch (2.3.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -164,6 +165,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  cinch
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
