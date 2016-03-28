@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Advtypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advtypes.each do |advtype| %>
+      <tr>
+        <td><%= link_to 'Show', advtype %></td>
+        <td><%= link_to 'Edit', edit_advtype_path(advtype) %></td>
+        <td><%= link_to 'Destroy', advtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advtype', new_advtype_path %>
