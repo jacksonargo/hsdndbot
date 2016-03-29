@@ -4,12 +4,15 @@ class Advtype < Personality
 
   embeds_many :typereqs
 
+  def to_s
+    "#{name}"
+  end
+
   ## Checks if the player meets the requirements to add this adv type
   def meets_reqs?(player)
-    meets = true
     typereqs.each do |req|
-      meets = false unless req.player_meets? player
+      return false unless req.player_meets? player
     end
-    meets
+    return true
   end
 end
