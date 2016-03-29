@@ -3,7 +3,6 @@ class Personality
   include Mongoid::Timestamps
 
   field :name,       type: String
-  field :baseClass,  type: Boolean
   field :summary,    type: String
   field :usualRoles, type: Array
 

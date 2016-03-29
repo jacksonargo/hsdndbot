@@ -17,7 +17,7 @@ class Player
   field :coin,        type: Float,   default: 0
   field :hp,          type: Float,   default: 0
   field :sp,          type: Float,   default: 0
-  field :joined,      type: Time,    default: Time.now
+  field :crimes_committed, type: Integer, default: 0
 
   embeds_many :plyrskills
   embeds_many :plyrattrs
