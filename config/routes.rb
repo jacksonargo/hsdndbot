@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :advtypes
-  resources :campaigns
 #  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -21,6 +19,8 @@ Rails.application.routes.draw do
   resources :basetypes
   resources :feats
   resources :players
+  resources :advtypes
+  resources :campaigns
 
 
   # Example of regular route:

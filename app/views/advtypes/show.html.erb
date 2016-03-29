@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_advtype_path(@advtype) %> |
-<%= link_to 'Back', advtypes_path %>
+<%= show_title @advtype %>
+<%= show_summary @advtype %>
+
+<% if @advtype.usualRoles %>
+  <strong>Usual roles:</strong> <%= @advtype.usualRoles.join(', ') %>.
+<% end %>
+
+<h3>Requirements:</h3>
+<% @advtype.typereqs.each do |req| %>
+<%= req %><br>
+<% end %>
+
+<div class="listing">
+  <h3>Feats</h3>
+</div>

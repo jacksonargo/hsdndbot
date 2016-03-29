@@ -43,6 +43,16 @@ class Typereq
 
   embedded_in :advtype
 
+  def to_s
+    a = []
+    a << "test_collection: #{test_collection}"     if test_collection
+    a << "test_selection: #{test_selection}"       if test_selection
+    a << "test_method: #{test_method}"             if test_method
+    a << "comparison_method: #{comparison_method}" if comparison_method
+    a << "target: #{target}"                       if target
+    a.join(", ")
+  end
+
   ## Test if a player has the requirements
   def player_meets?(player)
     if test_collection.class == Array
