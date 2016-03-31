@@ -8,10 +8,7 @@ class PlayersController < ApplicationController
   end
 
   def new
-    @player = Player.new_player "nonick"
-    @player.name = "New Player"
-    @player.save
-    render 'edit'
+    @player = Player.new
   end
 
   def edit

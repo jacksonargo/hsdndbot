@@ -2,6 +2,8 @@ class Player
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :_id, type: String, default: ->{ nick }
+
   field :name,        type: String
   field :nick,        type: String
   field :backstory,   type: String

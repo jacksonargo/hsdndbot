@@ -12,7 +12,7 @@
       <table class="table table-hover table-borderless">
         <tr>
           <td><h4>Joined:</h4></td>
-          <td><h4><%= @player.joined.to_date.gregorian %></h4></td>
+          <td><h4><%= @player.created_at.httpdate %></h4></td>
         </tr>
         <tr>
           <td><h4>Nick:</h4></td>
