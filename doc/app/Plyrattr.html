@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Plyrattr - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Physattr.html">Physattr</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-clone">::clone</a>
+    
+    <li ><a href="#method-c-new_list">::new_list</a>
+    
+    <li ><a href="#method-i-belongs_to_player">#belongs_to_player</a>
+    
+    <li ><a href="#method-i-modifiers">#modifiers</a>
+    
+    <li ><a href="#method-i-skill_mod">#skill_mod</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-total">#total</a>
+    
+    <li ><a href="#method-i-up">#up</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Plyrattr">
+  <h1 id="class-Plyrattr" class="class">
+    class Plyrattr
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-clone" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone</span><span
+            class="method-args">(a)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clone from a physattr</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clone-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clone</span> (<span class="ruby-identifier">a</span>)
+  <span class="ruby-identifier">n</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">n</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">n</span>.<span class="ruby-identifier">base_value</span> = <span class="ruby-value">6</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">n</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new list of all physattrs</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new_list-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_list</span>
+  <span class="ruby-identifier">list</span> = []
+  <span class="ruby-constant">Physattr</span>.<span class="ruby-identifier">where</span>({}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clone</span>(<span class="ruby-identifier">a</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">list</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-belongs_to_player" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">belongs_to_player</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Find out who we belong to</p>
+          
+          
+
+          
+          <div class="method-source-code" id="belongs_to_player-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-constant">Player</span>.<span class="ruby-identifier">where</span>({ <span class="ruby-identifier">plyrattrs</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attributes</span> }).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-modifiers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modifiers</span><span
+            class="method-args">(player=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Takes a player and calculates the total buff for an attribute</p>
+          
+          
+
+          
+          <div class="method-source-code" id="modifiers-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">modifiers</span>(<span class="ruby-identifier">player</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">player</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-identifier">x</span> = <span class="ruby-value">0</span>
+  <span class="ruby-comment"># From the base class</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">player</span>.<span class="ruby-identifier">baseType</span>
+    <span class="ruby-identifier">x</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Basetype</span>.<span class="ruby-identifier">attrBuff</span> <span class="ruby-identifier">player</span>.<span class="ruby-identifier">baseType</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># From the race</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">player</span>.<span class="ruby-identifier">race</span>
+    <span class="ruby-identifier">x</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Race</span>.<span class="ruby-identifier">attrBuff</span> <span class="ruby-identifier">player</span>.<span class="ruby-identifier">race</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skill_mod" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skill_mod</span><span
+            class="method-args">(player=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculate the skill buff for the attr</p>
+          
+          
+
+          
+          <div class="method-source-code" id="skill_mod-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skill_mod</span>(<span class="ruby-identifier">player</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">player</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-identifier">t</span> = <span class="ruby-identifier">total</span>
+  <span class="ruby-identifier">t</span> <span class="ruby-operator">-=</span> <span class="ruby-value">10</span>
+  <span class="ruby-identifier">t</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">t</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-node">&quot;#{name}: #{base_value} (#{total})&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total</span><span
+            class="method-args">(player=nil, mods=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Total value of the attr</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total</span> (<span class="ruby-identifier">player</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">mods</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">player</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-identifier">mods</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">modifiers</span>(<span class="ruby-identifier">player</span>)
+  <span class="ruby-identifier">base_value</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">mods</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-up" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up</span><span
+            class="method-args">(x=1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Increment the base value</p>
+          
+          
+
+          
+          <div class="method-source-code" id="up-source">
+            <pre><span class="ruby-comment"># File app/models/plyrattr.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">up</span>(<span class="ruby-identifier">x</span>=<span class="ruby-value">1</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_value</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

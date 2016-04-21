@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Plyrskill - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Skill.html">Skill</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-clone">::clone</a>
+    
+    <li ><a href="#method-c-new_list">::new_list</a>
+    
+    <li ><a href="#method-i-belongs_to_player">#belongs_to_player</a>
+    
+    <li ><a href="#method-i-lookup">#lookup</a>
+    
+    <li ><a href="#method-i-plyrattr">#plyrattr</a>
+    
+    <li ><a href="#method-i-roll">#roll</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-total">#total</a>
+    
+    <li ><a href="#method-i-up">#up</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Plyrskill">
+  <h1 id="class-Plyrskill" class="class">
+    class Plyrskill
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-clone" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone</span><span
+            class="method-args">(skill)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clone-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clone</span> (<span class="ruby-identifier">skill</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-constant">Plyrskill</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">skill</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">base_value</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new list of all plyrskills</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new_list-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_list</span>
+  <span class="ruby-identifier">list</span> = []
+  <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">where</span>({}).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clone</span>(<span class="ruby-identifier">a</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">list</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-belongs_to_player" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">belongs_to_player</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="belongs_to_player-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-identifier">key</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reflect_on_association</span>(<span class="ruby-value">:player</span>).<span class="ruby-identifier">inverse</span>
+  <span class="ruby-constant">Player</span>.<span class="ruby-identifier">where</span>({ <span class="ruby-identifier">key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attributes</span> }).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lookup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lookup</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="lookup-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">lookup</span>
+  <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">name_exists?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-plyrattr" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plyrattr</span><span
+            class="method-args">(player=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plyrattr-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plyrattr</span>(<span class="ruby-identifier">player</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">player</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-comment"># Get the skill&#39;s related pattr</span>
+  <span class="ruby-comment"># We have to look up the original skill definition</span>
+  <span class="ruby-identifier">pattr_name</span> = <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">related_pattr</span>
+  <span class="ruby-comment"># Get the players plyrattr object</span>
+  <span class="ruby-identifier">player</span>.<span class="ruby-identifier">plyrattrs</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">pattr_name</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-roll" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">roll</span><span
+            class="method-args">(n=20)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Roll 20 for this skill</p>
+          
+          
+
+          
+          <div class="method-source-code" id="roll-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">roll</span>(<span class="ruby-identifier">n</span>=<span class="ruby-value">20</span>)
+  <span class="ruby-identifier">total</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-identifier">n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-node">&quot;#{name}: #{base_value} (#{total})&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the total value of the skill Sum of the base value and the modifier
+from the skills related physattr</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total</span>
+  <span class="ruby-identifier">player</span> = <span class="ruby-identifier">belongs_to_player</span>
+  <span class="ruby-identifier">base_value</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">plyrattr</span>.<span class="ruby-identifier">skill_mod</span>(<span class="ruby-identifier">player</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-up" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up</span><span
+            class="method-args">(x=1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Increment the skill value</p>
+          
+          
+
+          
+          <div class="method-source-code" id="up-source">
+            <pre><span class="ruby-comment"># File app/models/plyrskill.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">up</span>(<span class="ruby-identifier">x</span>=<span class="ruby-value">1</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_value</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
