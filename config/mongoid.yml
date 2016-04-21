@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - <%= ENV['DB_HOST'] %>
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -24,10 +24,10 @@ development:
         #     - use: web
 
         # The name of the user for authentication.
-        # user: 'user'
+        user: <%= ENV['DB_USER'] %>
 
         # The password of the user for authentication.
-        # password: 'password'
+        password: <%= ENV['DB_PASS'] %>
 
         # The user's database roles.
         # roles:
@@ -135,7 +135,7 @@ test:
     default:
       database: hsdnd_test
       hosts:
-        - localhost:27017
+        - mongo
       options:
         read:
           mode: :primary
