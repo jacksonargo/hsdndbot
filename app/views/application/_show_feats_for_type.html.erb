@@ -1,0 +1,20 @@
+<div class="listing">
+  <h3>Feats</h3>
+  <% Feat.where(type: @type).each do |a| %>
+  <h5><strong><%= a.name %></strong></h5>
+  <table class="table table-hover">
+    <tr>
+      <td>Activation<td>
+      <td><%= a.activation %><td>
+    </tr>
+    <tr>
+      <td>Requirements</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= a.perk %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>
+

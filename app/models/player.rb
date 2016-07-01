@@ -20,9 +20,15 @@ class Player
   field :hp,          type: Float,   default: 0
   field :sp,          type: Float,   default: 0
   field :crimes_committed, type: Integer, default: 0
+  field :uniq_drugs_used, type: Integer, default: 0
+  field :em_relationship_checks_success, type: Integer, default: 0
+  field :ph_relationship_checks_success, type: Integer, default: 0
+  field :rumors, type: Integer, default: 0
+  field :life_revelation, type: Boolean, default: false
 
   embeds_many :plyrskills
   embeds_many :plyrattrs
+  embeds_many :plyrfeats
 
   accepts_nested_attributes_for :plyrskills
   accepts_nested_attributes_for :plyrattrs

@@ -3,7 +3,7 @@ class Feat
   include Mongoid::Timestamps
 
   field :name,        type: String
-  field :last_used,   type: Date
+  field :type,        type: String
   field :perk,        type: String, default: "None"
   field :personality, type: String, default: "None"
   field :activation,  type: String, default: "Passive"

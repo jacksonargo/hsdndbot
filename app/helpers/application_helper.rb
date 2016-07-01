@@ -80,6 +80,11 @@ module ApplicationHelper
     render 'show_physattr_list'
   end
 
+  def show_feats_for_type(type)
+    @type = type
+    render 'show_feats_for_type'
+  end
+
   def show_collection_list(model, collection, opts={})
     opts[:value]       ||= :value
     opts[:show_zero]   ||= false 

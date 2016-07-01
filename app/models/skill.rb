@@ -7,6 +7,7 @@ class Skill
   field :related_pattr, type: String
   field :hidden,        type: Boolean
   field :is_knowledge?, type: Boolean
+  field :is_relationship?, type: Boolean
 
   # Checks if the physattr is hidden
   def is_hidden?

@@ -9,7 +9,8 @@ development:
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - <%= ENV['DB_HOST'] %>
+        - localhost
+        #- <%= ENV['DB_HOST'] %>
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -24,10 +25,10 @@ development:
         #     - use: web
 
         # The name of the user for authentication.
-        user: <%= ENV['DB_USER'] %>
+        #user: <%= ENV['DB_USER'] %>
 
         # The password of the user for authentication.
-        password: <%= ENV['DB_PASS'] %>
+        #password: <%= ENV['DB_PASS'] %>
 
         # The user's database roles.
         # roles:
