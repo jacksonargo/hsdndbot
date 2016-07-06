@@ -21,23 +21,23 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.name %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
+  <!-- Show flash messages -->
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
-</div>
-
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-
-
-
+  
+  <!-- Show user's login name -->
+  <div id="user_nav">
+    <% if current_user %>
+      Logged in as <%= current_user.name %>.
+      <%= link_to "Log out", logout_path %>
+    <% else %>
+      <%= link_to "Sign up", sign_up_path %> or
+      <%= link_to "log in", login_path %>
+    <% end %>
+  </div>
+  
+  <!-- Add the navbar -->
   <%= render 'navbar' %>
 
 </head>
