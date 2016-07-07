@@ -8,6 +8,7 @@ class BasetypesController < ApplicationController
   end
 
   def new
+    permission_denied unless current_user.admin
     @basetype = Basetype.new
     @basetype.name = "New Base Class"
     @basetype.save
@@ -15,10 +16,12 @@ class BasetypesController < ApplicationController
   end
 
   def edit
+    permission_denied unless current_user.admin
     @basetype = Basetype.find(params[:id])
   end
 
   def create
+    permission_denied unless current_user.admin
     @basetype = Basetype.new(basetype_params)
     if @basetype.save
       redirect_to @basetype
@@ -28,6 +31,7 @@ class BasetypesController < ApplicationController
   end
 
   def update
+    permission_denied unless current_user.admin
     @basetype = Basetype.find(params[:id])
 
     if @basetype.update(basetype_params)
@@ -38,6 +42,7 @@ class BasetypesController < ApplicationController
   end
 
   def destroy
+    permission_denied unless current_user.admin
     @basetype = Basetype.find(params[:id])
     @basetype.destroy
     redirect_to basetypes_path

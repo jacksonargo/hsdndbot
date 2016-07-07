@@ -14,16 +14,19 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/new
   def new
+    permission_denied unless current_user.admin
     @campaign = Campaign.new
   end
 
   # GET /campaigns/1/edit
   def edit
+    permission_denied unless current_user.admin
   end
 
   # POST /campaigns
   # POST /campaigns.json
   def create
+    permission_denied unless current_user.admin
     @campaign = Campaign.new(campaign_params)
 
     respond_to do |format|
@@ -40,6 +43,7 @@ class CampaignsController < ApplicationController
   # PATCH/PUT /campaigns/1
   # PATCH/PUT /campaigns/1.json
   def update
+    permission_denied unless current_user.admin
     respond_to do |format|
       if @campaign.update(campaign_params)
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
@@ -54,6 +58,7 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1
   # DELETE /campaigns/1.json
   def destroy
+    permission_denied unless current_user.admin
     @campaign.destroy
     respond_to do |format|
       format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }

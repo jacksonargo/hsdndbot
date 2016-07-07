@@ -4,10 +4,11 @@ class User
   field :name, type: String
   field :password_salt, type: String
   field :password_hash, type: String
-  
+  field :admin, type: Boolean
+ 
   attr_accessor :password
   before_save :encrypt_password
-  
+ 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :name

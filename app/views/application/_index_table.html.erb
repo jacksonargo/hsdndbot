@@ -2,10 +2,12 @@
   <% @items.each do |x| %>
     <tr>
       <td><%= link_to x.name, x %></td>
+      <%- if current_user.admin -%>
       <td><%= link_to 'Edit', controller: controller_name, action: :edit, id: x %></td>
       <td><%= link_to 'Destroy', x,
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
+      <%- end -%>
     </tr>
   <% end %>
 </table>

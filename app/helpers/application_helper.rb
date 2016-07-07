@@ -10,7 +10,9 @@ module ApplicationHelper
 
   def index_title(title)
     link = link_to 'new', controller: controller_name, action: :new
-    "<h1>#{title} <small>(#{link})</small></h1>".html_safe
+    @link = link
+    @title = title
+    render 'index_title'
   end
 
   def index_table(items)
@@ -55,7 +57,11 @@ module ApplicationHelper
     links = ""
     links += "(#{ledi}) " if opts[:show_edit]
     links += "(#{ldel}) " if opts[:show_delete]
-    "<h1>#{title} <small>#{links}</small></h1>".html_safe
+    if current_user.admin
+      "<h1>#{title} <small>#{links}</small></h1>".html_safe
+    else
+      "<h1>#{title}</h1>".html_safe
+    end
   end
 
   def show_summary(model, summary = :summary)

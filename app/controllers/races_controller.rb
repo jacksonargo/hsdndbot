@@ -9,6 +9,7 @@ class RacesController < ApplicationController
   end
 
   def new
+    permission_denied unless current_user.admin
     @race = Race.new
     @race.name = "New Race"
     @race.save
@@ -16,10 +17,12 @@ class RacesController < ApplicationController
   end
 
   def edit
+    permission_denied unless current_user.admin
     @race = Race.find(params[:id])
   end
 
   def create
+    permission_denied unless current_user.admin
     @race = Race.new(race_params)
     if @race.save
       redirect_to @race
@@ -29,6 +32,7 @@ class RacesController < ApplicationController
   end
 
   def update
+    permission_denied unless current_user.admin
     @race = Race.find(params[:id])
 
     # Update the race name
@@ -43,6 +47,7 @@ class RacesController < ApplicationController
   end
 
   def destroy
+    permission_denied unless current_user.admin
     @race = Race.find(params[:id])
     @race.destroy
     redirect_to races_path

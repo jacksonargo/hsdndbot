@@ -10,7 +10,7 @@ class FeatsController < ApplicationController
   end
 
   def new
-    redirect_to feats_url
+    permission_denied unless current_user.admin
     @feat = Feat.new
     @feat.name = "New Feat"
     @feat.save
@@ -18,10 +18,12 @@ class FeatsController < ApplicationController
   end
 
   def edit
+    permission_denied unless current_user.admin
     @feat = Feat.find(params[:id])
   end
 
   def create
+    permission_denied unless current_user.admin
     @feat = Feat.new(feat_params)
     if @feat.save
       redirect_to @feat
@@ -31,6 +33,7 @@ class FeatsController < ApplicationController
   end
 
   def update
+    permission_denied unless current_user.admin
     @feat = Feat.find(params[:id])
 
     # Update the feat name
@@ -45,6 +48,7 @@ class FeatsController < ApplicationController
   end
 
   def destroy
+    permission_denied unless current_user.admin
     @feat = Feat.find(params[:id])
     @feat.destroy
     redirect_to feats_path

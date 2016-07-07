@@ -8,14 +8,17 @@ class PhysattrsController < ApplicationController
   end
 
   def new
+    permission_denied unless current_user.admin
     @physattr = Physattr.new
   end
 
   def edit
+    permission_denied unless current_user.admin
     @physattr = Physattr.find(params[:id])
   end
 
   def create
+    permission_denied unless current_user.admin
     @physattr = Physattr.new(physattr_params)
     if @physattr.save
       redirect_to @physattr
@@ -25,6 +28,7 @@ class PhysattrsController < ApplicationController
   end
 
   def update
+    permission_denied unless current_user.admin
     @physattr = Physattr.find(params[:id])
     if @physattr.update(physattr_params)
       redirect_to @physattr
@@ -34,6 +38,7 @@ class PhysattrsController < ApplicationController
   end
 
   def destroy
+    permission_denied unless current_user.admin
     @physattr = Physattr.find(params[:id])
     @physattr.destroy
     redirect_to physattrs_path
