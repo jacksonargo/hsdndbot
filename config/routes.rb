@@ -12,17 +12,15 @@ Rails.application.routes.draw do
 #    resources :comments
 #  end
 
-  resources :physattrs
-
   resources :races
   resources :skills
-  resources :basetypes
   resources :feats
-  resources :advtypes
   resources :campaigns
-
   resources :players
 
+  resources :advancedclasses, controller: :advtypes, as: 'advtypes'
+  resources :baseclasses, controller: :basetypes, as: 'basetypes'
+  resources :attributes, controller: :physattrs, as: 'physattrs'
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
